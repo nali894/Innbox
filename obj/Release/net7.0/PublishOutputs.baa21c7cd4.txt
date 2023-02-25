@@ -1,0 +1,12 @@
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\InnboxService.exe
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\appsettings.json
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\InnboxService.dll
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\InnboxService.deps.json
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\InnboxService.runtimeconfig.json
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\InnboxService.pdb
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Lenovo\source\repos\InnboxService\obj\Release\net7.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
