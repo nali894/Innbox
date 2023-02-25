@@ -32,9 +32,9 @@ namespace InnboxService
                           startDate = dataRow.Field<DateTime>("fecha_hora_inicio"),
                           EndDate = dataRow.Field<DateTime>("fecha_hora_fin"),
                           DatetimeCreation = dataRow.Field<DateTime>("fecha_creacion")
-                      }).ToList();
+                      }).ToList(); 
 
-            return lstService;
+            return lstService; 
         }
     }
 }
