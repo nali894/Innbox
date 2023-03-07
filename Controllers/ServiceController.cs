@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
-using System.Net;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,6 +30,42 @@ namespace InnboxService
             }
             
 
+            return _oResponse;
+        }
+
+        [HttpPost]
+        [Route("UpdateStatus")]
+        public Response UpdateStatus(ServiceStatus oServiceStatus)
+        {
+            try
+            {
+                Update oUpdate = new Update();
+                _oResponse.Values = oUpdate.UpdateStatus(oServiceStatus.intServiceID, oServiceStatus.strStatus);
+            }
+            catch (Exception ex)
+            {
+                _oResponse.Code = 701;
+                _oResponse.Description = $"Error:{ex.Message}";
+            }
+
+            return _oResponse;
+        }
+
+        [HttpPost]
+        [Route("GetUserByUserName")]
+        public Response GetUserByUserName(UserName oUserName)
+        {
+            try
+            {
+                Read oRead = new Read();
+                User oUser = oRead.GetUserByUserName(oUserName.strUserName);
+                _oResponse.Values = oUser;
+            }
+            catch (Exception ex)
+            {
+                _oResponse.Code = 701;
+                _oResponse.Description = $"Error:{ex.Message}";
+            }
             return _oResponse;
         }
 

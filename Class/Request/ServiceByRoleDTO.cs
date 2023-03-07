@@ -4,9 +4,9 @@ namespace InnboxService
 {
     public class ServiceByRoleDTO
     {
-        private int _intServiceType=1;
+        private int _intServiceType = 1;
         private string _strRole = "";
-        public int intServiceType 
+        public int intServiceType
         {
             get { return _intServiceType; }   // get method
             set { _intServiceType = value; }  // set method
@@ -22,6 +22,6 @@ namespace InnboxService
 
         }
 
-        public string strDateTime { get; set; }      
+        public string strDateTime { get; set; }
     }
 }
