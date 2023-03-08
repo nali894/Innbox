@@ -34,13 +34,33 @@ namespace InnboxService
         }
 
         [HttpPost]
-        [Route("UpdateStatus")]
-        public Response UpdateStatus(ServiceStatus oServiceStatus)
+        [Route("AcceptService")]
+        public Response AcceptService(ServiceUser oServiceUser)
         {
             try
             {
                 Update oUpdate = new Update();
-                _oResponse.Values = oUpdate.UpdateStatus(oServiceStatus.intServiceID, oServiceStatus.strStatus);
+                bool bUpdateUser=oUpdate.UpdateService_User(oServiceUser.intServiceID, oServiceUser.strUserCode);
+             
+                if(bUpdateUser)
+                {
+                    bool bUpdateStatus = oUpdate.UpdateStatus(oServiceUser.intServiceID, "2");
+
+                    if (bUpdateStatus)
+                    {
+                        _oResponse.Values = "Servicio Actualizado";
+                    }
+                    else
+                    {                        
+                        _oResponse.Code = 802;
+                        _oResponse.Description = $"Error:No se actualizó el estado del servicio";
+                    }
+                }
+                else
+                {
+                    _oResponse.Code = 802;
+                    _oResponse.Description = $"Error:No se asignó el usuario";
+                }
             }
             catch (Exception ex)
             {
@@ -50,6 +70,7 @@ namespace InnboxService
 
             return _oResponse;
         }
+
 
         [HttpPost]
         [Route("GetUserByUserName")]
