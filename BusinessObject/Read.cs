@@ -10,7 +10,7 @@ namespace InnboxService
 
             Dictionary<string, dynamic> lstParameters = new Dictionary<string, dynamic>()
             {
-                { "intServiceType",serviceByRoleDTO.intServiceType },
+                { "intRole",serviceByRoleDTO.strRole },
                 { "strDatetime",serviceByRoleDTO.strDateTime }
             };
 
