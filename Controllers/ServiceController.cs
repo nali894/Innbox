@@ -70,6 +70,25 @@ namespace InnboxService
             return _oResponse;
         }
 
+        [HttpGet]
+        [Route("GetAllServices")]
+        public Response GetAllServices()
+        {
+            try
+            {               
+                Read read = new Read();
+                List<Service> lstService = read.GetAllServices();
+                _oResponse.Values = lstService;
+            }
+            catch (Exception ex)
+            {
+                _oResponse.Code = 701;
+                _oResponse.Description = $"Error:{ex.Message}";
+            }
+
+
+            return _oResponse;
+        }
 
 
 

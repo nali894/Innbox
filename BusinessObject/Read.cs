@@ -26,6 +26,32 @@ namespace InnboxService
             return lstRoles;
         }
 
+        public List<Service> GetAllServices()
+        {
+            List<Service> lstService = new List<Service>();
+
+            DataTable dt = MySqlStartup.CallStoredProcedure_Read("GetAllServices");
+
+            if (dt.Rows.Count > 0)
+            {
+                lstService = dt.AsEnumerable()
+                     .Select(dataRow => new Service
+                     {
+                         Code = dataRow.Field<int>("cod_servicio"),
+                         ServiceType = dataRow.Field<string>("descripcion"),
+                         Status = dataRow.Field<string>("estado_descripcion"),
+                         Value = dataRow.Field<decimal>("valor"),
+                         Address = dataRow.Field<string>("direccion"),
+                         User = dataRow.Field<string>("usuario_asignado"),
+                         CreateBy = dataRow.Field<string>("usuario_creacion"),
+                         startDate = dataRow.Field<DateTime>("fecha_hora_inicio"),
+                         EndDate = dataRow.Field<DateTime>("fecha_hora_fin"),
+                         DatetimeCreation = dataRow.Field<DateTime>("fecha_creacion")
+                     }).ToList();
+            }
+
+            return lstService;
+        }
 
 
         public List<Service> GetServicesByRole(ServiceByRoleDTO serviceByRoleDTO)
