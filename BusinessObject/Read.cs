@@ -72,7 +72,8 @@ namespace InnboxService
                      .Select(dataRow => new Service
                      {
                          Code = dataRow.Field<int>("cod_servicio"),
-                         ServiceType = dataRow.Field<string>("descripcion"),
+                         ServiceType = dataRow.Field<string>("descripcion_tipo_serv"),
+                         Role = dataRow.Field<string>("descripcion_rol"),
                          Status = dataRow.Field<string>("estado"),
                          Value = dataRow.Field<decimal>("valor"),
                          Address = dataRow.Field<string>("direccion"),

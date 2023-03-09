@@ -4,6 +4,7 @@
     {
         public int Code { get; set; }
         public string ServiceType { get; set; }
+        public string Role { get; set; }
         public string Status { get; set; }
         public decimal Value { get; set; }
         public string Address { get; set; }    
