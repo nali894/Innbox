@@ -8,7 +8,70 @@ namespace InnboxService
     [ApiController]
     public class ServiceController : ControllerBase
     {
-        private Response _oResponse = new Response();    
+        private Response _oResponse = new Response();
+
+
+        [HttpPost]
+        [Route("AcceptService")]
+        public Response AcceptService(ServiceUser oServiceUser)
+        {
+            try
+            {
+                Update oUpdate = new Update();
+                bool bUpdateUser = oUpdate.UpdateService_User(oServiceUser.intServiceID, oServiceUser.strUserCode);
+
+                if (bUpdateUser)
+                {
+                    bool bUpdateStatus = oUpdate.UpdateStatus(oServiceUser.intServiceID, "2");
+
+                    if (bUpdateStatus)
+                    {
+                        _oResponse.Values = "Servicio Actualizado";
+                    }
+                    else
+                    {
+                        _oResponse.Code = 802;
+                        _oResponse.Description = $"Error:No se actualizó el estado del servicio";
+                    }
+                }
+                else
+                {
+                    _oResponse.Code = 802;
+                    _oResponse.Description = $"Error:No se asignó el usuario";
+                }
+            }
+            catch (Exception ex)
+            {
+                _oResponse.Code = 701;
+                _oResponse.Description = $"Error:{ex.Message}";
+            }
+
+            return _oResponse;
+        }
+
+
+        [HttpPost]
+        [Route("GetAllRoles")]
+        public Response GetAllRoles()
+        {
+            try
+            {              
+                Read read = new Read();
+                List<RoleService> lstService = read.GetAllRoles();
+                _oResponse.Values = lstService;
+            }
+            catch (Exception ex)
+            {
+                _oResponse.Code = 701;
+                _oResponse.Description = $"Error:{ex.Message}";
+            }
+
+
+            return _oResponse;
+        }
+
+
+
 
 
         [HttpPost]
@@ -33,43 +96,7 @@ namespace InnboxService
             return _oResponse;
         }
 
-        [HttpPost]
-        [Route("AcceptService")]
-        public Response AcceptService(ServiceUser oServiceUser)
-        {
-            try
-            {
-                Update oUpdate = new Update();
-                bool bUpdateUser=oUpdate.UpdateService_User(oServiceUser.intServiceID, oServiceUser.strUserCode);
-             
-                if(bUpdateUser)
-                {
-                    bool bUpdateStatus = oUpdate.UpdateStatus(oServiceUser.intServiceID, "2");
-
-                    if (bUpdateStatus)
-                    {
-                        _oResponse.Values = "Servicio Actualizado";
-                    }
-                    else
-                    {                        
-                        _oResponse.Code = 802;
-                        _oResponse.Description = $"Error:No se actualizó el estado del servicio";
-                    }
-                }
-                else
-                {
-                    _oResponse.Code = 802;
-                    _oResponse.Description = $"Error:No se asignó el usuario";
-                }
-            }
-            catch (Exception ex)
-            {
-                _oResponse.Code = 701;
-                _oResponse.Description = $"Error:{ex.Message}";
-            }
-
-            return _oResponse;
-        }
+       
 
 
         [HttpPost]

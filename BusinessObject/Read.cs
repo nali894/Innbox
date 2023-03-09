@@ -3,7 +3,29 @@
 namespace InnboxService
 {
     public class Read
-    {        
+    {
+
+        public List<RoleService> GetAllRoles()
+        {
+            List<RoleService> lstRoles = new List<RoleService>();   
+            DataTable dt = MySqlStartup.CallStoredProcedure_Read("GetAllRoles");
+
+            if (dt.Rows.Count > 0)
+            {
+                lstRoles = dt.AsEnumerable()
+                     .Select(dataRow => new RoleService
+                     {
+                         Role = dataRow.Field<string>("Rol"),
+                         Service = dataRow.Field<string>("Servicio")
+                      
+                     }).ToList();
+            }
+
+            return lstRoles;
+        }
+
+
+
         public List<Service> GetServicesByRole(ServiceByRoleDTO serviceByRoleDTO)
         {
             List<Service> lstService = new List<Service>();
@@ -14,7 +36,7 @@ namespace InnboxService
                 { "strDatetime",serviceByRoleDTO.strDateTime }
             };
 
-            DataTable dt = MySqlStartup.CallStoredProcedure_Read(lstParameters, "GetServicesByRole");
+            DataTable dt = MySqlStartup.CallStoredProcedure_Read("GetServicesByRole", lstParameters);
 
             if(dt.Rows.Count>0)
             {
@@ -48,7 +70,7 @@ namespace InnboxService
               
             };
 
-            DataTable dt = MySqlStartup.CallStoredProcedure_Read(lstParameters, "GetUserByUserName");
+            DataTable dt = MySqlStartup.CallStoredProcedure_Read("GetUserByUserName", lstParameters);
 
             if (dt.Rows.Count > 0)
             {
