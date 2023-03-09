@@ -15,8 +15,10 @@ namespace InnboxService
                 lstRoles = dt.AsEnumerable()
                      .Select(dataRow => new RoleService
                      {
+                         RoleCode = dataRow.Field<string>("cod_rol"),
                          Role = dataRow.Field<string>("Rol"),
-                         Service = dataRow.Field<string>("Servicio")
+                         ServiceTypeCode = dataRow.Field<string>("cod_tipo_serv"),
+                         ServiceType = dataRow.Field<string>("Servicio")
                       
                      }).ToList();
             }

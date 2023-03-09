@@ -50,7 +50,7 @@ namespace InnboxService
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetAllRoles")]
         public Response GetAllRoles()
         {
