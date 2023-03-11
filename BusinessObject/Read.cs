@@ -54,6 +54,37 @@ namespace InnboxService
         }
 
 
+        public Service GetServiceById(int  intServiceID)
+        {
+            Service oService = new Service();
+            Dictionary<string, dynamic> lstParameters = new Dictionary<string, dynamic>()
+            {
+                { "codservicio",intServiceID}         
+            };
+
+            DataTable dt = MySqlStartup.CallStoredProcedure_Read("GetServiceById", lstParameters);
+
+            if (dt.Rows.Count > 0)
+            {
+                oService= dt.AsEnumerable()
+                     .Select(dataRow => new Service
+                     {
+                         Code = dataRow.Field<int>("cod_servicio"),                   
+                         Status = dataRow.Field<string>("estado"),
+                         Value = dataRow.Field<decimal>("valor"),
+                         Address = dataRow.Field<string>("direccion"),
+                         User = dataRow.Field<string>("usuario_asignado"),
+                         CreateBy = dataRow.Field<string>("usuario_creacion"),
+                         startDate = dataRow.Field<DateTime>("fecha_hora_inicio"),
+                         EndDate = dataRow.Field<DateTime>("fecha_hora_fin"),
+                         DatetimeCreation = dataRow.Field<DateTime>("fecha_creacion")
+                     }).FirstOrDefault();
+            }
+
+                return oService;
+        }
+
+
         public List<Service> GetServicesByRole(ServiceByRoleDTO serviceByRoleDTO)
         {
             List<Service> lstService = new List<Service>();

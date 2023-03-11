@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +27,8 @@ namespace InnboxService
 
                     if (bUpdateStatus)
                     {
-                        _oResponse.Values = "Servicio Actualizado";
+                        Read oRead = new Read();
+                        _oResponse.Values =$"Estado:{oRead.GetServiceById(oServiceUser.intServiceID).Status}";
                     }
                     else
                     {
